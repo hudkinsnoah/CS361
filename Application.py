@@ -4,8 +4,6 @@ import tkinter.font as tkFont
 import tkinter.messagebox
 
 
-
-
 def exitProtocol(self):
     exitOption = tkinter.messagebox.askquestion("Exit?", "Are you sure you want to exit?")
 
