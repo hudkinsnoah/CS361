@@ -24,9 +24,12 @@ class setUp(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
 
-        global currentTimeline
-        currentTimeline = tk.StringVar()
-        currentTimeline.set("1775 - 1861")
+        self.state('zoomed')
+
+        # Disabled for the moment since it has not been implemented yet
+        # global currentTimeline
+        # currentTimeline = tk.StringVar()
+        # currentTimeline.set("1775 - 1861")
         global numquestions
         numquestions = tk.IntVar()
         numquestions.set(15)
@@ -78,14 +81,14 @@ class startPage(tk.Frame):
 
         fontStyle = tkFont.Font(family="Lucida Grande", size=15)
         startButton = Button(self, text="Start", width=20, height=2, font=fontStyle, bg="blue", fg="white",
-                             command=lambda:controller.show_frame(questionsPage))
+                             command=lambda:controller.show_frame(tutorialpage))
         startButton.pack(side=BOTTOM)
 
-        fontStyle = tkFont.Font(family="Lucida Grande", size=35)
+        fontStyle = tkFont.Font(size=35)
         title = Label(self, text="Time Line History Quiz", width=50, height=2, font=fontStyle)
         title.pack(side=TOP)
 
-        fontStyle = tkFont.Font(family="Lucida Grande", size=12, slant="italic")
+        fontStyle = tkFont.Font(size=12, slant="italic")
         description = Label(self, text="This program is meant to test your knowledge of the timelines of various "
                                        "periods of history.\n To change your time period, select settings in the top "
                                        "right corner. Once you have confirmed your correct time period, select start "
@@ -100,8 +103,9 @@ class settingsPage(tk.Frame):
 
         # saveChanges is used to finalize changes that a user may make
         def savechanges():
-            global currentTimeline
-            currentTimeline.set(clicked1.get())
+            # Disabled for the moment since it has not been implemented yet
+            # global currentTimeline
+            # currentTimeline.set(clicked1.get())
             global numquestions
             numquestions.set(clicked2.get())
 
@@ -121,32 +125,33 @@ class settingsPage(tk.Frame):
                             command=lambda: controller.show_frame(startPage))
         homeButton.pack(side=LEFT, anchor=NW)
 
-        fontStyle = tkFont.Font(family="Lucida Grande", size=35)
+        fontStyle = tkFont.Font(size=35)
         title = Label(self, text="Settings", height=3, font=fontStyle)
         title.pack(side=TOP)
 
-        fontStyle = tkFont.Font(family="lucida Grande", size=16)
-        TPlabel = Label(self, text="Time Period", font=fontStyle)
-        TPlabel.pack(side=TOP)
+        # Disabled for the moment since it has not been implemented yet
+        # fontStyle = tkFont.Font(size=16)
+        # TPlabel = Label(self, text="Time Period", font=fontStyle)
+        # TPlabel.pack(side=TOP)
+        #
+        # fontStyle = tkFont.Font(size=10, slant="italic")
+        # TP2label = Label(self, text="This will change the time period that you are asked questions and tested on",
+        #                  font=fontStyle)
+        # TP2label.pack(side=TOP)
+        #
+        # timePeriodOptions = ["1775 - 1861", "1862 - 1914", "1915 - 1945", "1946 - 1968", "1969 - Present"]
 
-        fontStyle = tkFont.Font(family="lucida Grande", size=10, slant="italic")
-        TP2label = Label(self, text="This will change the time period that you are asked questions and tested on",
-                         font=fontStyle)
-        TP2label.pack(side=TOP)
+        # clicked1 = StringVar()
+        # clicked1.set(timePeriodOptions[0])
+        #
+        # drop1 = OptionMenu(self, clicked1, *timePeriodOptions)
+        # drop1.pack(side=TOP)
 
-        timePeriodOptions = ["1775 - 1861", "1862 - 1914", "1915 - 1945", "1946 - 1968", "1969 - Present"]
-
-        clicked1 = StringVar()
-        clicked1.set(timePeriodOptions[0])
-
-        drop1 = OptionMenu(self, clicked1, *timePeriodOptions)
-        drop1.pack(side=TOP)
-
-        fontStyle = tkFont.Font(family="lucida Grande", size=16)
+        fontStyle = tkFont.Font(size=16)
         NQlabel = Label(self, text="Number of Questions", font=fontStyle)
         NQlabel.pack(side=TOP)
 
-        fontStyle = tkFont.Font(family="lucida Grande", size=10, slant="italic")
+        fontStyle = tkFont.Font(size=10, slant="italic")
         NQ2label = Label(self, text="This will change the total number of questions of the overall test",
                          font=fontStyle)
         NQ2label.pack(side=TOP)
@@ -159,7 +164,7 @@ class settingsPage(tk.Frame):
         drop2 = OptionMenu(self, clicked2, *numQuestionsOptions)
         drop2.pack(side=TOP)
 
-        fontStyle = tkFont.Font(family="lucida Grande", size=12)
+        fontStyle = tkFont.Font(size=12)
         selectButton = Button(self, text="Save Changes", bg="blue", fg="white", width=20, height=2, font=fontStyle,
                               command=savechanges)
         selectButton.pack(side=BOTTOM)
@@ -179,18 +184,17 @@ class tutorialpage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-        homeButton = Button(self, text="Home", width=10, height=1, padx=10, pady=10, command=homeProtocol)
+        homeButton = Button(self, text="Home", width=10, height=1, padx=10, pady=10)
         homeButton.pack(side=LEFT, anchor=NW)
 
-        pauseButton = Button(self, text="Pause", width=10, height=1, padx=10, pady=10,
-                             command=lambda:controller.show_frame(pausePage))
+        pauseButton = Button(self, text="Pause", width=10, height=1, padx=10, pady=10)
         pauseButton.pack(side=RIGHT, anchor=NE)
 
-
-        global currentTimeline
+        # Disabled for the moment since it has not been implemented yet
+        # global currentTimeline
         fontStyle = tkFont.Font(family="lucida Grande", size=18)
-        timeperiodlabel = Label(self, textvariable=currentTimeline, font=fontStyle)
-        timeperiodlabel.pack(side=TOP)
+        # timeperiodlabel = Label(self, textvariable=currentTimeline, font=fontStyle)
+        # timeperiodlabel.pack(side=TOP)
 
         QuestionFrame = Frame(self)
         AnswersFrame = Frame(self)
@@ -201,32 +205,25 @@ class tutorialpage(tk.Frame):
         questionframe.place(relx=.1, rely=1, anchor=S)
         nextframe.place(relx=.95, rely=1, anchor=S)
 
-        question1txt = Question("", 0)
-        question1 = Label(QuestionFrame, textvariable=question1txt.text, font=fontStyle)
+        question1 = Label(QuestionFrame, text="Name", font=fontStyle)
         question1.pack()
         spacer1 = Label(QuestionFrame, text="")
         spacer1.pack()
 
-        question2txt = Question("", 0)
-        question2 = Label(QuestionFrame, textvariable=question2txt.text, font=fontStyle)
+        question2 = Label(QuestionFrame, text="Name", font=fontStyle)
         question2.pack()
         spacer2 = Label(QuestionFrame, text="")
         spacer2.pack()
 
-        question3txt = Question("", 0)
-        question3 = Label(QuestionFrame, textvariable=question3txt.text, font=fontStyle)
+        question3 = Label(QuestionFrame, text="Name", font=fontStyle)
         question3.pack()
         spacer3 = Label(QuestionFrame, text="")
         spacer3.pack()
 
-        question4txt = Question("", 0)
-        question4 = Label(QuestionFrame, textvariable=question4txt.text, font=fontStyle)
+        question4 = Label(QuestionFrame, text="Name", font=fontStyle)
         question4.pack()
 
-        Answers = ["1st",
-                   "2nd",
-                   "3rd",
-                   "4th"]
+        Answers = ["1st", "2nd", "3rd", "4th"]
 
         clicked1 = StringVar()
         clicked1.set(Answers[0])
@@ -253,7 +250,7 @@ class tutorialpage(tk.Frame):
 
         global numquestions
         global questionsAnswered
-        fontStyle = tkFont.Font(family="lucida Grande", size=20)
+        fontStyle = tkFont.Font(size=20)
         CurQuestion = Label(questionframe, textvariable=questionsAnswered, font=fontStyle)
         spacerlabel = Label(questionframe, text="/", font=fontStyle)
         totalQuestions = Label(questionframe, textvariable=numquestions, font=fontStyle)
@@ -261,8 +258,31 @@ class tutorialpage(tk.Frame):
         spacerlabel.pack(side=LEFT)
         totalQuestions.pack(side=LEFT)
 
-        NextButton = Button(nextframe, text="Next", font=fontStyle, bg = "Orange", command=endTest)
+        NextButton = Button(nextframe, text="Next", font=fontStyle, bg="Orange")
         NextButton.pack(side=RIGHT)
+
+        fontStyle = tkFont.Font(size=15)
+        startButton = Button(self, text= "Start", font=fontStyle, bg="Blue", fg="White", width=20, height=2,
+                             command=lambda:controller.show_frame(questionsPage))
+        startButton.place(relx=.5, rely=1, anchor=S)
+
+        # These are the tutorial labels that are used to help a user
+        fontStyle = tkFont.Font(slant="italic")
+        homelabel = Label(self, text="Select To Go To The Home Page", font=fontStyle)
+        pauselabel = Label(self, text="Select To Pause The Test", font=fontStyle)
+        namelabel = Label(self, text="Displayed In Place Of 'Name' Will Be \n Names That You Will Be Putting In Order",
+                          font=fontStyle)
+        #timelinelabel = Label(self, text="This Is The Current Timeline That You Have Selected", font=fontStyle)
+        answerslabel = Label(self, text="Choose An Order For The \n Names Based On Birthdate", font=fontStyle)
+        questionslabel = Label(self, text="Current Question Number/ Number Of Questions In The Test", font=fontStyle)
+        nextlabel = Label(self, text="Select In Order To Go \n To The Next Question", font=fontStyle)
+        homelabel.place(relx=0, rely=.06, anchor=NW)
+        pauselabel.place(relx=1, rely=.06, anchor=NE)
+        # timelinelabel.place(relx=.5, rely=.04, anchor=N)
+        namelabel.place(relx=0, rely=.55, anchor=W)
+        answerslabel.place(relx=.85, rely=.55, anchor=E)
+        questionslabel.place(relx=0, rely=.95, anchor=SW)
+        nextlabel.place(relx=.99, rely=.92, anchor=SE)
 
 
 # questionsPage is the actual page of the test with questions and during test information
@@ -295,10 +315,11 @@ class questionsPage(tk.Frame):
 
         # checkCorrect will take a users answer and check to see if they correct
         def checkCorrect():
-            ans1 = conversion(clicked1.get())
-            ans2 = conversion(clicked2.get())
-            ans3 = conversion(clicked3.get())
-            ans4 = conversion(clicked4.get())
+            global questionsCorrect
+            ans1 = conversion(Option1answer.get())
+            ans2 = conversion(Option2answer.get())
+            ans3 = conversion(Option3answer.get())
+            ans4 = conversion(Option4answer.get())
 
             answersConverted = [ans1, ans2, ans3, ans4]
 
@@ -310,11 +331,13 @@ class questionsPage(tk.Frame):
             questions = [questions1, questions2, questions3, questions4]
             questionsSorted = sorted(questions)
 
+
             for i in range(0, 4):
                 if answersConverted[i] == questionsSorted.index(questions[i]) + 1:
                     pass
                 else:
                     return False
+            questionsCorrect.set(questionsCorrect.get() + 1)
             return True
 
         # updatequestions is used for updating the questions on the test. This is called each time a user
@@ -369,10 +392,10 @@ class questionsPage(tk.Frame):
                 localCount+=1
 
 
-            clicked1.set(Answers[0])
-            clicked2.set(Answers[0])
-            clicked3.set(Answers[0])
-            clicked4.set(Answers[0])
+            Option1answer.set(Answers[0])
+            Option2answer.set(Answers[0])
+            Option3answer.set(Answers[0])
+            Option4answer.set(Answers[0])
 
         # updateServer is used in order to connect with my local Server and send the test information to it
         def updateServer():
@@ -389,7 +412,6 @@ class questionsPage(tk.Frame):
             global questionsCorrect
             global percentCorrect
 
-
             cur.execute("INSERT INTO finaltab (numbercorrect, numberofquestions, percentage) VALUES (%s, %s, %s)",
                         (questionsCorrect.get(), numquestions.get(), percentCorrect.get()))
             db.commit()
@@ -402,9 +424,7 @@ class questionsPage(tk.Frame):
             global percentCorrect
             global questionsCorrect
             questionsAnswered.set(questionsAnswered.get() + 1)
-            correct = checkCorrect()
-            if correct:
-                questionsCorrect.set(questionsCorrect.get() + 1)
+            checkCorrect()
 
             if questionsAnswered.get() > numquestions.get():
                 questionsAnswered.set(1)
@@ -413,7 +433,6 @@ class questionsPage(tk.Frame):
 
             else:
                 updatequestions()
-                pass
 
         homeButton = Button(self, text="Home", width=10, height=1, padx=10, pady=10, command=homeProtocol)
         homeButton.pack(side=LEFT, anchor=NW)
@@ -422,11 +441,11 @@ class questionsPage(tk.Frame):
                              command=lambda:controller.show_frame(pausePage))
         pauseButton.pack(side=RIGHT, anchor=NE)
 
-
-        global currentTimeline
+        # Disabled for the moment since it has not been implemented yet
+        # global currentTimeline
         fontStyle = tkFont.Font(family="lucida Grande", size=18)
-        timeperiodlabel = Label(self, textvariable=currentTimeline, font=fontStyle)
-        timeperiodlabel.pack(side=TOP)
+        # timeperiodlabel = Label(self, textvariable=currentTimeline, font=fontStyle)
+        # timeperiodlabel.pack(side=TOP)
 
         QuestionFrame = Frame(self)
         AnswersFrame = Frame(self)
@@ -459,37 +478,34 @@ class questionsPage(tk.Frame):
         question4 = Label(QuestionFrame, textvariable=question4txt.text, font=fontStyle)
         question4.pack()
 
-        Answers = ["1st",
-                   "2nd",
-                   "3rd",
-                   "4th"]
+        Answers = ["1st", "2nd", "3rd", "4th"]
 
-        clicked1 = StringVar()
-        clicked1.set(Answers[0])
-        drop1 = OptionMenu(AnswersFrame, clicked1, *Answers)
+        Option1answer = StringVar()
+        Option1answer.set(Answers[0])
+        drop1 = OptionMenu(AnswersFrame, Option1answer, *Answers)
         drop1.pack(side=TOP)
-        spacer21 = Label(AnswersFrame, text="")
-        spacer21.pack()
-        clicked2 = StringVar()
-        clicked2.set(Answers[0])
-        drop2 = OptionMenu(AnswersFrame, clicked2, *Answers)
+        blankline1 = Label(AnswersFrame, text="")
+        blankline1.pack()
+        Option2answer = StringVar()
+        Option2answer.set(Answers[0])
+        drop2 = OptionMenu(AnswersFrame, Option2answer, *Answers)
         drop2.pack(side=TOP)
-        spacer22 = Label(AnswersFrame, text="")
-        spacer22.pack()
-        clicked3 = StringVar()
-        clicked3.set(Answers[0])
-        drop3 = OptionMenu(AnswersFrame, clicked3, *Answers)
+        blankline2 = Label(AnswersFrame, text="")
+        blankline2.pack()
+        Option3answer = StringVar()
+        Option3answer.set(Answers[0])
+        drop3 = OptionMenu(AnswersFrame, Option3answer, *Answers)
         drop3.pack(side=TOP)
-        spacer23 = Label(AnswersFrame, text="")
-        spacer23.pack()
-        clicked4 = StringVar()
-        clicked4.set(Answers[0])
-        drop4 = OptionMenu(AnswersFrame, clicked4, *Answers)
+        blankline3 = Label(AnswersFrame, text="")
+        blankline3.pack()
+        Option4answer = StringVar()
+        Option4answer.set(Answers[0])
+        drop4 = OptionMenu(AnswersFrame, Option4answer, *Answers)
         drop4.pack(side=TOP)
 
         global numquestions
         global questionsAnswered
-        fontStyle = tkFont.Font(family="lucida Grande", size=20)
+        fontStyle = tkFont.Font(size=20)
         CurQuestion = Label(questionframe, textvariable=questionsAnswered, font=fontStyle)
         spacerlabel = Label(questionframe, text="/", font=fontStyle)
         totalQuestions = Label(questionframe, textvariable=numquestions, font=fontStyle)
@@ -523,8 +539,8 @@ class pausePage(tk.Frame):
 
         # homeProtocol, similar to exit protocol is called whenever a user requests to go back to home
         def homeProtocol():
-            exitOption = tkinter.messagebox.askquestion("Exit To Home?", "Are you sure you want to quit the test? "
-                                                                         "All progress will be lost")
+            messagetext = "Are you sure you want to quit the test? All progress will be lost"
+            exitOption = tkinter.messagebox.askquestion("Exit To Home?", messagetext)
 
             if exitOption == "no":
                 pass
@@ -541,7 +557,7 @@ class pausePage(tk.Frame):
                               command=lambda: controller.show_frame(questionsPage))
         ResumeButton.pack(side=BOTTOM)
 
-        fontStyle = tkFont.Font(family="Lucida Grande", size=20)
+        fontStyle = tkFont.Font(size=20)
         PausedLabel = Label(self, pady=30, text="The Test Has Been Paused", font=fontStyle)
         PausedLabel.pack(side=TOP)
 
@@ -568,9 +584,10 @@ class resultsPage(tk.Frame):
                              command=lambda: controller.show_frame(startPage))
         startButton.pack(side=BOTTOM)
 
-        fontStyle = tkFont.Font(family="lucida Grande", size=18)
-        timeperiodlabel = Label(self, textvariable=currentTimeline, font=fontStyle)
-        timeperiodlabel.pack(side=TOP)
+        # Disabled for the moment since it has not been implemented yet
+        # fontStyle = tkFont.Font(size=18)
+        # timeperiodlabel = Label(self, textvariable=currentTimeline, font=fontStyle)
+        # timeperiodlabel.pack(side=TOP)
 
         fontStyle = tkFont.Font(size=24)
         finishedlabel = Label(self, text="Finished! Here's The Results", font=fontStyle)
