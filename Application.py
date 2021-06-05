@@ -184,6 +184,11 @@ class tutorialpage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
+        def resetCorrect():
+            global questionsCorrect
+            questionsCorrect.set(0)
+            controller.show_frame(questionsPage)
+
         homeButton = Button(self, text="Home", width=10, height=1, padx=10, pady=10)
         homeButton.pack(side=LEFT, anchor=NW)
 
@@ -263,7 +268,7 @@ class tutorialpage(tk.Frame):
 
         fontStyle = tkFont.Font(size=15)
         startButton = Button(self, text= "Start", font=fontStyle, bg="Blue", fg="White", width=20, height=2,
-                             command=lambda:controller.show_frame(questionsPage))
+                             command=resetCorrect)
         startButton.place(relx=.5, rely=1, anchor=S)
 
         # These are the tutorial labels that are used to help a user
@@ -614,6 +619,7 @@ class resultsPage(tk.Frame):
         CurQuestion.pack(side=LEFT)
         spacerlabel.pack(side=LEFT)
         totalQuestions.pack(side=LEFT)
+
 
 
 app = setUp()
